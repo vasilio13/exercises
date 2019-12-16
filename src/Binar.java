@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 /**ЗАДАЧА №950
 
@@ -24,19 +22,27 @@ public class Binar {
     public static void main(String[] args) {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader("input.txt"))) {
             String s = new String(bufferedReader.readLine());
+            System.out.println(s);
             String s1 = new String("");
             int position = 0;
             char temp = 1;
-            int numberChar;
-            for(byte count=0;count<s.length();count++){
-                if ((s.charAt(count))==(1)) {
+            int numberChar=0;
+            System.out.println(s.length());
+            System.out.println((char)121);
+            for(int count=0;count<s.length();count++){
+                System.out.println("numberChar "+" count "+count+" position "+position);
+                if ((s.charAt(count))==(49)) {
                     numberChar = count-position;// 97 - 122
-                    System.out.println("numberChar "+numberChar+" count "+count+" position "+position);
                     s1 = s1+ Character.toString((char)(97+numberChar));
-                            position = count;
-                };
+                            position = count+1;
                 }
-            System.out.println(s1);
+               // System.out.println(97+numberChar);
+                }
+
+            System.out.println(" result" + s1);
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("output.txt"));
+            bufferedWriter.write(s1);
+            bufferedWriter.flush();
 
         } catch (IOException e) {
             e.printStackTrace();
